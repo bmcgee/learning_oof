@@ -10,23 +10,34 @@ Ball::Ball(){
 }
 
 void Ball::setup(ofPoint _pos, int _dim){
+    //initialize variables
     pos = _pos;
-    gravity = -3;
-    
-    int maxSpeed = 1;
+    gravity = 1;
+    drag = ofRandom(.85,.99);
+    life = 0;
+    int maxVel = 10;
+    //set up velocities
 
-    vel.x = ofRandom(-maxSpeed, maxSpeed);
-    vel.y = ofRandom(-maxSpeed, maxSpeed);
+    vel.x = ofRandom(-maxVel, maxVel);
+    vel.y = ofRandom(-maxVel, maxVel);
     
+    //setup look of particle
     dim = _dim;
-    
     color.set(ofRandom(175, 255), 0, ofRandom(100,150));
 
 }
 
 void Ball::update(){
+    life++;
     
+    //apply gravity and forces
+    vel.y += (gravity*(life*.025));
+    vel *= drag;
     
+    //update position
+    pos += vel;
+
+    //Limit the position based on screen edges
     if(pos.x < 0) {
         pos.x = 0;
         vel.x *= -1;
@@ -34,8 +45,6 @@ void Ball::update(){
         pos.x = ofGetWidth();
         vel.x *= -1;
     }
-    cout << "Velocity Y: "<< vel.y << endl;
-
     
     if(pos.y < 0) {
         pos.y = 0;
@@ -44,15 +53,7 @@ void Ball::update(){
         pos.y = ofGetHeight();
         vel.y *= -1;
     }
-    
-    cout << "Velocity Y: "<< vel.y << endl;
-    
-    int t = ofGetFrameNum() + 123;
-    int s = .2;
-    
-    cout << "TX: " << t << endl;
-    
-    pos += vel;
+
 }
 
 void Ball::draw(){

@@ -21,6 +21,9 @@ public:
     ofPoint pos;
     ofPoint vel;
     ofPoint frc;
+    
+    
+    int life;
    
     int dim;
     ofColor color;
