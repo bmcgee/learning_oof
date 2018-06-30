@@ -24,6 +24,8 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    #define NBALLS 10
-    Ball groupofBalls[NBALLS];
+//    #define NBALLS 10
+//    Ball groupofBalls[NBALLS];
+    
+    vector <Ball> groupOfBalls;
 };

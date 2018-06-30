@@ -14,7 +14,7 @@
 class Ball {
 public:
     
-    void setup();
+    void setup(float _x, float _y, int dim);
     void update();
     void draw();
     
@@ -22,8 +22,10 @@ public:
     float y;
     float speedY;
     float speedX;
-    int diam;
+    int dim;
     ofColor color;
+    
+    float gravity;
     
     Ball();
 

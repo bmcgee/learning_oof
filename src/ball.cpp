@@ -9,14 +9,15 @@
 Ball::Ball(){
 }
 
-void Ball::setup(){
-    x = ofRandom(0, ofGetWidth());
-    y = ofRandom(0, ofGetWidth());
+void Ball::setup(float _x, float _y, int _dim){
+    x = _x;
+    y = _y;
+    gravity = -3;
     
     speedX = ofRandom(-10, 10);
     speedY = ofRandom(-10, 10);
     
-    diam = 20;
+    dim = _dim;
     
     color.set(ofRandom(175, 255), 0, ofRandom(100,150));
 
@@ -49,5 +50,5 @@ void Ball::update(){
 
 void Ball::draw(){
     ofSetColor(color);
-    ofDrawCircle(x, y, diam);
+    ofDrawCircle(x, y, dim);
 }
