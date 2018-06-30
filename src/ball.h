@@ -14,17 +14,18 @@
 class Ball {
 public:
     
-    void setup(float _x, float _y, int dim);
+    void setup(ofPoint pos, int dim);
     void update();
     void draw();
-    
-    float x;
-    float y;
-    float speedY;
-    float speedX;
+   
+    ofPoint pos;
+    ofPoint vel;
+    ofPoint frc;
+   
     int dim;
     ofColor color;
     
+    float drag;
     float gravity;
     
     Ball();

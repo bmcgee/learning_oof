@@ -41,14 +41,16 @@ void ofApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     Ball tempBall;
-    tempBall.setup(x, y, ofRandom(10, 40));
+    ofPoint mousePoint;
+    mousePoint.set(x,y);
+    tempBall.setup(mousePoint, ofRandom(10, 40));
     groupOfBalls.push_back(tempBall);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     for (int i=0; i < groupOfBalls.size(); i++){
-        float distance = ofDist(x, y, groupOfBalls[i].x, groupOfBalls[i].y);
+        float distance = ofDist(x, y, groupOfBalls[i].pos.x, groupOfBalls[i].pos.y);
         
         if (distance < groupOfBalls[i].dim) {
             groupOfBalls.erase(groupOfBalls.begin()+i);

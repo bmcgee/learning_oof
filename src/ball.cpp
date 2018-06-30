@@ -9,13 +9,14 @@
 Ball::Ball(){
 }
 
-void Ball::setup(float _x, float _y, int _dim){
-    x = _x;
-    y = _y;
+void Ball::setup(ofPoint _pos, int _dim){
+    pos = _pos;
     gravity = -3;
     
-    speedX = ofRandom(-10, 10);
-    speedY = ofRandom(-10, 10);
+    int maxSpeed = 1;
+
+    vel.x = ofRandom(-maxSpeed, maxSpeed);
+    vel.y = ofRandom(-maxSpeed, maxSpeed);
     
     dim = _dim;
     
@@ -24,31 +25,37 @@ void Ball::setup(float _x, float _y, int _dim){
 }
 
 void Ball::update(){
-    if(x < 0) {
-        x = 0;
-        speedX *= -1;
-    } else if(x > ofGetWidth()) {
-        x = ofGetWidth();
-        speedX *= -1;
+    
+    
+    if(pos.x < 0) {
+        pos.x = 0;
+        vel.x *= -1;
+    } else if(pos.x > ofGetWidth()) {
+        pos.x = ofGetWidth();
+        vel.x *= -1;
     }
-    cout << "SpeedX: "<< speedX << endl;
+    cout << "Velocity Y: "<< vel.y << endl;
 
     
-    if(y < 0) {
-        y = 0;
-        speedY *= -1;
-    } else if(y > ofGetHeight()) {
-        y = ofGetHeight();
-        speedY *= -1;
+    if(pos.y < 0) {
+        pos.y = 0;
+        vel.y *= -1;
+    } else if(pos.y > ofGetHeight()) {
+        pos.y = ofGetHeight();
+        vel.y *= -1;
     }
     
-    cout << "SpeedY: "<< speedX << endl;
-
-    x+=speedX;
-    y+=speedY;
+    cout << "Velocity Y: "<< vel.y << endl;
+    
+    int t = ofGetFrameNum() + 123;
+    int s = .2;
+    
+    cout << "TX: " << t << endl;
+    
+    pos += vel;
 }
 
 void Ball::draw(){
     ofSetColor(color);
-    ofDrawCircle(x, y, dim);
+    ofDrawCircle(pos.x, pos.y, dim);
 }
