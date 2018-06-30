@@ -2,18 +2,22 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    myBall.setup();
+    for(int i=0; i<NBALLS; i++){
+        groupofBalls[i].setup();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    myBall.update();
-}
+    for(int i=0; i<NBALLS; i++){
+        groupofBalls[i].update();
+    }}
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    myBall.draw();
-}
+    for(int i=0; i<NBALLS; i++){
+        groupofBalls[i].draw();
+    }}
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
